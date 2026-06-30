@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julian Pérez — Desarrollador Móvil Senior</title>
+<meta name="description" content="Portafolio de Julian David Pérez Gómez, Ingeniero de Sistemas y Desarrollador Móvil Senior con más de 8 años de experiencia en iOS, Android y Flutter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-alt:#f7f8fa;
+    --text:#1a1d24;
+    --text-soft:#5b6270;
+    --line:#e6e8ec;
+    --accent:#2563eb;
+    --accent-soft:#eff4ff;
+    --radius:14px;
+    --maxw:880px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-weight:700;letter-spacing:-.02em;font-size:1.05rem}
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{color:var(--text-soft);font-size:.92rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:640px){.nav-links{display:none}}
+
+  /* HERO */
+  header.hero{padding:88px 0 72px;text-align:center}
+  .avatar{
+    width:128px;height:128px;border-radius:50%;
+    margin:0 auto 28px;overflow:hidden;
+    border:3px solid var(--bg);
+    box-shadow:0 0 0 3px var(--accent), 0 18px 40px rgba(37,99,235,.18);
+    background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-size:2.4rem;font-weight:800;color:var(--accent);
+  }
+  .hero h1{font-size:2.7rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
+  .hero .role{font-size:1.15rem;color:var(--accent);font-weight:600;margin-bottom:18px}
+  .hero p.lead{max-width:620px;margin:0 auto 28px;color:var(--text-soft);font-size:1.05rem}
+  .meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;color:var(--text-soft);font-size:.92rem;margin-bottom:28px}
+  .meta span{display:inline-flex;align-items:center;gap:6px}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border-radius:10px;font-weight:600;font-size:.95rem;
+    transition:transform .15s, box-shadow .2s, background .2s;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(37,99,235,.35)}
+  .btn-ghost{background:var(--bg-alt);color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--accent)}
+  @media(max-width:640px){.hero h1{font-size:2.1rem}}
+
+  /* SECTIONS */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  .sec-title{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+  .sec-sub{color:var(--text-soft);margin-bottom:34px;font-size:.98rem}
+  .about p{color:var(--text-soft);font-size:1.05rem;max-width:720px}
+
+  /* SKILLS */
+  .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:640px){.skill-grid{grid-template-columns:1fr}}
+  .skill-card{
+    background:var(--bg-alt);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px;transition:border-color .2s, transform .15s;
+  }
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .skill-card h3{font-size:1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .skill-card h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{
+    font-size:.8rem;font-weight:500;color:var(--text-soft);
+    background:var(--bg);border:1px solid var(--line);
+    padding:4px 10px;border-radius:20px;
+  }
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .job{position:relative;padding-bottom:34px}
+  .job:last-child{padding-bottom:0}
+  .job::before{
+    content:'';position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--accent);
+  }
+  .job .when{font-size:.82rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .job h3{font-size:1.08rem;font-weight:700;margin:4px 0 2px}
+  .job .org{font-size:.92rem;color:var(--text-soft);font-style:italic;margin-bottom:10px}
+  .job ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .job li{position:relative;padding-left:18px;color:var(--text-soft);font-size:.96rem}
+  .job li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  /* EDU + AWARDS GRID */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:640px){.two-col{grid-template-columns:1fr;gap:36px}}
+  .list-clean{list-style:none;display:flex;flex-direction:column;gap:16px}
+  .list-clean li{padding-left:18px;position:relative;color:var(--text-soft);font-size:.96rem}
+  .list-clean li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent)}
+  .list-clean strong{color:var(--text);display:block;font-weight:600}
+
+  /* CONTACT */
+  .contact{text-align:center}
+  .contact .sec-title{margin-bottom:14px}
+  .contact p{color:var(--text-soft);max-width:520px;margin:0 auto 28px}
+
+  footer{padding:34px 0;border-top:1px solid var(--line);text-align:center;color:var(--text-soft);font-size:.86rem}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">Julian<span>.</span>dev</div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre mí</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#educacion">Educación</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="avatar">JP</div>
+  <h1>Julian David Pérez Gómez</h1>
+  <div class="role">Desarrollador Móvil Senior · iOS · Android · Flutter</div>
+  <p class="lead">Ingeniero de Sistemas con más de 8 años construyendo aplicaciones móviles de alto impacto para clientes empresariales. Lidero equipos, automatizo despliegues y entrego apps en App Store y Google Play.</p>
+  <div class="meta">
+    <span>📍 Medellín, Colombia</span>
+    <span>📧 freritmg12@gmail.com</span>
+    <span>📱 (+57) 305 759 7509</span>
+  </div>
+  <div class="cta">
+    <a class="btn btn-primary" href="#contacto">Contáctame</a>
+    <a class="btn btn-ghost" href="https://github.com/frerit" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/frerit/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</header>
+
+<section id="sobre" class="wrap about reveal">
+  <h2 class="sec-title">Sobre mí</h2>
+  <p class="sec-sub">Quién soy y qué hago</p>
+  <p>Desarrollador Móvil Senior con experiencia en aplicaciones nativas iOS (Swift, Objective-C), Android (Kotlin, Java) y soluciones multiplataforma con Flutter y React Native. He liderado equipos de desarrollo y entregado aplicaciones para clientes empresariales como Cencosud, TUL y Grupo Éxito. Soy experto en automatización CI/CD, arquitecturas móviles (MVVM, Clean Architecture) y publicación en tiendas. Ganador de Google Code Jam 2018 y finalista del Hackathon AngelHack.</p>
+</section>
+
+<section id="habilidades" class="wrap reveal">
+  <h2 class="sec-title">Habilidades técnicas</h2>
+  <p class="sec-sub">Tecnologías con las que trabajo a diario</p>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <h3><span class="dot"></span>Desarrollo iOS</h3>
+      <div class="tags">
+        <span class="tag">Swift</span><span class="tag">Objective-C</span><span class="tag">SwiftUI</span><span class="tag">UIKit</span><span class="tag">Core Data</span><span class="tag">Xcode</span><span class="tag">TestFlight</span><span class="tag">App Store Connect</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="dot"></span>Desarrollo Android</h3>
+      <div class="tags">
+        <span class="tag">Kotlin</span><span class="tag">Java</span><span class="tag">Jetpack Compose</span><span class="tag">Android SDK</span><span class="tag">Room</span><span class="tag">ViewModel</span><span class="tag">Gradle</span><span class="tag">Material Design</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="dot"></span>Multiplataforma</h3>
+      <div class="tags">
+        <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">React Native</span><span class="tag">Provider</span><span class="tag">Bloc</span><span class="tag">Riverpod</span><span class="tag">Expo</span><span class="tag">Redux</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="dot"></span>DevOps y CI/CD</h3>
+      <div class="tags">
+        <span class="tag">Fastlane</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span><span class="tag">GitLab CI</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Gestión de Releases</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="dot"></span>Backend y Servicios</h3>
+      <div class="tags">
+        <span class="tag">Firebase</span><span class="tag">Firestore</span><span class="tag">FCM</span><span class="tag">REST APIs</span><span class="tag">Supabase</span><span class="tag">AWS</span><span class="tag">Push / APNs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="dot"></span>Pruebas y Metodologías</h3>
+      <div class="tags">
+        <span class="tag">XCTest</span><span class="tag">Espresso</span><span class="tag">TDD</span><span class="tag">BDD</span><span class="tag">Agile / Scrum</span><span class="tag">Liderazgo Técnico</span><span class="tag">Mentoría</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia" class="wrap reveal">
+  <h2 class="sec-title">Experiencia laboral</h2>
+  <p class="sec-sub">Más de 8 años entregando aplicaciones móviles</p>
+  <div class="timeline">
+
+    <div class="job">
+      <div class="when">Dic 2023 – Presente</div>
+      <h3>Líder de Equipo Móvil — Cencosud</h3>
+      <div class="org">Acid Labs · Montevideo, Uruguay (Remoto)</div>
+      <ul>
+        <li>Lideré el desarrollo y lanzamiento del MVP de la app de Easy (Cencosud) en tiempo récord con Flutter y nativo iOS/Android, publicada en App Store y Google Play.</li>
+        <li>Implementé pipelines CI/CD con Fastlane y GitHub Actions, reduciendo el tiempo de despliegue en un 60%.</li>
+        <li>Realizo auditorías de arquitectura y código, reduciendo las tasas de crash en un 40%.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="when">Feb 2022 – Dic 2023</div>
+      <h3>Desarrollador Móvil Senior y Líder de Equipo</h3>
+      <div class="org">TUL · Bogotá, Colombia</div>
+      <ul>
+        <li>Lideré un equipo de 5 desarrolladores construyendo apps Flutter para e-commerce con más de 200.000 usuarios activos mensuales en Colombia y México.</li>
+        <li>Establecí prácticas DevOps con CI/CD, logrando 95% de cobertura de pruebas y reduciendo los ciclos de release de 2 semanas a 3 días.</li>
+        <li>Mentoricé desarrolladores junior en Clean Architecture y revisión de código.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="when">Ene 2021 – Ene 2022</div>
+      <h3>Desarrollador Móvil Senior</h3>
+      <div class="org">BitGrayLabs · Atlanta, Georgia, USA (Remoto)</div>
+      <ul>
+        <li>Desarrollé apps nativas iOS (Swift, SwiftUI) y Android (Kotlin, Jetpack Compose) para clientes en EE. UU.</li>
+        <li>Construí soluciones Flutter integrando Firebase (Auth, Cloud Messaging, Firestore).</li>
+        <li>Automaticé builds y despliegues a TestFlight y Google Play con GitHub Actions y Fastlane.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="when">Nov 2020 – Jun 2021</div>
+      <h3>Desarrollador iOS Senior</h3>
+      <div class="org">Teravision Technologies · Medellín, Colombia</div>
+      <ul>
+        <li>Desarrollé y mantuve apps iOS con Swift, UIKit y Core Data para clientes del mercado estadounidense.</li>
+        <li>Implementé arquitectura MVVM y pruebas con XCTest, logrando 80% de cobertura.</li>
+        <li>Automaticé builds y despliegues iOS con Fastlane y Azure DevOps.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="when">Jul 2019 – Dic 2020</div>
+      <h3>Líder Técnico Móvil</h3>
+      <div class="org">PRAGMA · Medellín, Colombia</div>
+      <ul>
+        <li>Lideré el equipo móvil para las apps retail de Grupo Éxito, con millones de usuarios.</li>
+        <li>Desarrollé apps nativas iOS (Swift, Objective-C) y Android (Kotlin, Java).</li>
+        <li>Diseñé la estrategia CI/CD con Azure DevOps, reduciendo errores de despliegue en 70%.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="when">May 2018 – Feb 2019</div>
+      <h3>Desarrollador Móvil Junior</h3>
+      <div class="org">Grupo Réditos · Medellín, Colombia</div>
+      <ul>
+        <li>Desarrollé apps con Android nativo (Java) y React Native para servicios financieros.</li>
+        <li>Implementé integraciones REST API y persistencia local con Room y SQLite.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="when">Abr 2016 – Jun 2018</div>
+      <h3>Desarrollador Full Stack</h3>
+      <div class="org">Komet Sales / Strategee · Medellín, Colombia</div>
+      <ul>
+        <li>Desarrollé apps iOS con Swift integradas con Salesforce y Pardot.</li>
+        <li>Construí aplicaciones web con React y gestioné despliegues a App Store.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="educacion" class="wrap reveal">
+  <div class="two-col">
+    <div>
+      <h2 class="sec-title">Educación</h2>
+      <p class="sec-sub">Formación académica</p>
+      <ul class="list-clean">
+        <li><strong>Ingeniería de Sistemas</strong>Politécnico Grancolombiano · 2018–2020</li>
+        <li><strong>Diplomado en Desarrollo Móvil Multiplataforma</strong>Cedesistemas · 2018–2019</li>
+        <li><strong>Especialización en Desarrollo de Apps Móviles</strong>SENA · 2017</li>
+        <li><strong>Tecnólogo en Análisis y Desarrollo de Sistemas</strong>SENA · 2014–2016</li>
+        <li><strong>Técnico en Programación de Software</strong>SENA · 2010–2011</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="sec-title">Premios y certificaciones</h2>
+      <p class="sec-sub">Reconocimientos</p>
+      <ul class="list-clean">
+        <li><strong>🏆 Primer Lugar — Google Code Jam Challenger</strong>Entre más de 100 participantes, Medellín · 2018</li>
+        <li><strong>🥈 Segundo Lugar — AngelHack International Hackathon</strong>Medellín · 2018</li>
+        <li><strong>Diplomado en Ciencias de la Computación</strong>Politécnico Grancolombiano · 2019</li>
+        <li><strong>Certificación Google Analytics</strong>EOI - Escuela de Organización Industrial · 2015</li>
+      </ul>
+      <h2 class="sec-title" style="margin-top:30px">Idiomas</h2>
+      <ul class="list-clean" style="margin-top:14px">
+        <li><strong>Español</strong>Nativo</li>
+        <li><strong>Inglés</strong>Intermedio (B1–B2) · Competencia técnica</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="wrap contact reveal">
+  <h2 class="sec-title">¿Trabajamos juntos?</h2>
+  <p>Estoy abierto a nuevas oportunidades y proyectos móviles. Escríbeme y conversemos.</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="mailto:freritmg12@gmail.com">📧 Enviar correo</a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/frerit/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn btn-ghost" href="https://github.com/frerit" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Julian David Pérez Gómez · Desarrollado con HTML & CSS · Publicado en GitHub Pages
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
