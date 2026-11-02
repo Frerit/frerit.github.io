@@ -1,353 +1,105 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Julian Pérez — Desarrollador Móvil Senior</title>
-<meta name="description" content="Portafolio de Julian David Pérez Gómez, Ingeniero de Sistemas y Desarrollador Móvil Senior con más de 8 años de experiencia en iOS, Android y Flutter.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#ffffff;
-    --bg-alt:#f7f8fa;
-    --text:#1a1d24;
-    --text-soft:#5b6270;
-    --line:#e6e8ec;
-    --accent:#2563eb;
-    --accent-soft:#eff4ff;
-    --radius:14px;
-    --maxw:880px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    color:var(--text);
-    background:var(--bg);
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-  /* NAV */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,.85);
-    backdrop-filter:saturate(180%) blur(12px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .brand{font-weight:700;letter-spacing:-.02em;font-size:1.05rem}
-  .brand span{color:var(--accent)}
-  .nav-links{display:flex;gap:28px}
-  .nav-links a{color:var(--text-soft);font-size:.92rem;font-weight:500;transition:color .2s}
-  .nav-links a:hover{color:var(--accent)}
-  @media(max-width:640px){.nav-links{display:none}}
-
-  /* HERO */
-  header.hero{padding:88px 0 72px;text-align:center}
-  .avatar{
-    width:128px;height:128px;border-radius:50%;
-    margin:0 auto 28px;overflow:hidden;
-    border:3px solid var(--bg);
-    box-shadow:0 0 0 3px var(--accent), 0 18px 40px rgba(37,99,235,.18);
-    background:var(--accent-soft);
-    display:flex;align-items:center;justify-content:center;
-    font-size:2.4rem;font-weight:800;color:var(--accent);
-  }
-  .hero h1{font-size:2.7rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
-  .hero .role{font-size:1.15rem;color:var(--accent);font-weight:600;margin-bottom:18px}
-  .hero p.lead{max-width:620px;margin:0 auto 28px;color:var(--text-soft);font-size:1.05rem}
-  .meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;color:var(--text-soft);font-size:.92rem;margin-bottom:28px}
-  .meta span{display:inline-flex;align-items:center;gap:6px}
-  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:11px 22px;border-radius:10px;font-weight:600;font-size:.95rem;
-    transition:transform .15s, box-shadow .2s, background .2s;
-  }
-  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.25)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(37,99,235,.35)}
-  .btn-ghost{background:var(--bg-alt);color:var(--text);border:1px solid var(--line)}
-  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--accent)}
-  @media(max-width:640px){.hero h1{font-size:2.1rem}}
-
-  /* SECTIONS */
-  section{padding:56px 0;border-top:1px solid var(--line)}
-  .sec-title{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
-  .sec-sub{color:var(--text-soft);margin-bottom:34px;font-size:.98rem}
-  .about p{color:var(--text-soft);font-size:1.05rem;max-width:720px}
-
-  /* SKILLS */
-  .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media(max-width:640px){.skill-grid{grid-template-columns:1fr}}
-  .skill-card{
-    background:var(--bg-alt);border:1px solid var(--line);
-    border-radius:var(--radius);padding:22px;transition:border-color .2s, transform .15s;
-  }
-  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-  .skill-card h3{font-size:1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-  .skill-card h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
-  .tags{display:flex;flex-wrap:wrap;gap:7px}
-  .tag{
-    font-size:.8rem;font-weight:500;color:var(--text-soft);
-    background:var(--bg);border:1px solid var(--line);
-    padding:4px 10px;border-radius:20px;
-  }
-
-  /* TIMELINE */
-  .timeline{position:relative;padding-left:26px}
-  .timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line)}
-  .job{position:relative;padding-bottom:34px}
-  .job:last-child{padding-bottom:0}
-  .job::before{
-    content:'';position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;
-    background:var(--bg);border:3px solid var(--accent);
-  }
-  .job .when{font-size:.82rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
-  .job h3{font-size:1.08rem;font-weight:700;margin:4px 0 2px}
-  .job .org{font-size:.92rem;color:var(--text-soft);font-style:italic;margin-bottom:10px}
-  .job ul{list-style:none;display:flex;flex-direction:column;gap:7px}
-  .job li{position:relative;padding-left:18px;color:var(--text-soft);font-size:.96rem}
-  .job li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-
-  /* EDU + AWARDS GRID */
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-  @media(max-width:640px){.two-col{grid-template-columns:1fr;gap:36px}}
-  .list-clean{list-style:none;display:flex;flex-direction:column;gap:16px}
-  .list-clean li{padding-left:18px;position:relative;color:var(--text-soft);font-size:.96rem}
-  .list-clean li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent)}
-  .list-clean strong{color:var(--text);display:block;font-weight:600}
-
-  /* CONTACT */
-  .contact{text-align:center}
-  .contact .sec-title{margin-bottom:14px}
-  .contact p{color:var(--text-soft);max-width:520px;margin:0 auto 28px}
-
-  footer{padding:34px 0;border-top:1px solid var(--line);text-align:center;color:var(--text-soft);font-size:.86rem}
-
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
-  .reveal.show{opacity:1;transform:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="Julian Pérez, Technical Co-founder & Software Architect at PayFlex. A decade of building, shipping and leading mobile products in Latin America.">
+  <meta property="og:title" content="Julian Pérez — From first build to real users.">
+  <meta property="og:description" content="Technical Co-founder & Software Architect at PayFlex. Mobile products, technical leadership, and a track record in production.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://frerit.github.io/">
+  <title>Julian Pérez — Technical Co-founder, PayFlex</title>
+  <link rel="canonical" href="https://frerit.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231c211e'/%3E%3Ctext x='10' y='43' fill='%23f5f3ed' font-size='32' font-family='Arial' font-weight='700'%3EJP%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{--paper:#f5f3ed;--ink:#1c211e;--muted:#656a63;--line:#d5d6cc;--orange:#bf3e17;--bright:#f16b3c;--soft:#e9e8df;--green:#cbe7a6;--max:1220px;--ease:cubic-bezier(.23,1,.32,1)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:5px}::selection{background:var(--green);color:var(--ink)}.container{width:min(var(--max),calc(100% - 96px));margin:auto}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase}.muted{color:var(--muted)}.arrow{display:inline-block;font-size:20px;line-height:1}.skip{position:fixed;top:-80px;left:20px;z-index:100;background:var(--ink);color:white;padding:12px}.skip:focus{top:10px}.nav{position:sticky;top:0;z-index:30;background:rgba(245,243,237,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.nav-inner{height:81px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:14px;letter-spacing:-.03em}.monogram{width:35px;height:35px;display:grid;place-items:center;background:var(--ink);color:var(--paper);font-size:13px;letter-spacing:-.05em}.nav-links{display:flex;align-items:center;gap:28px;font-size:12px}.nav-links>a{color:var(--muted)}.nav-right{display:flex;align-items:center;gap:23px}.lang-switch{display:flex;gap:2px;border:1px solid var(--line);padding:3px;border-radius:6px}.lang-switch button{border:0;background:transparent;padding:4px 7px;font-size:10px;border-radius:3px}.lang-switch button[aria-pressed=true]{background:var(--ink);color:var(--paper)}.nav-contact{font-size:12px;border-bottom:1px solid var(--ink);padding:6px 0}.hero{padding:62px 0 55px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--muted)}.status-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 4px #bf3e1710}.hero-grid{display:grid;grid-template-columns:1.32fr 1fr;gap:65px;align-items:center;margin-top:30px}.hero h1{font-size:clamp(55px,5.65vw,84px);font-weight:500;letter-spacing:-.067em;line-height:1.01;margin:0 0 27px}.hero h1 span{color:var(--orange)}.intro{font-size:16px;color:var(--muted);max-width:460px;margin:0 0 28px;line-height:1.75}.intro strong{color:var(--ink);font-weight:600}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:22px}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;padding:14px 19px;background:var(--ink);color:var(--paper);font-size:12px;border:1px solid var(--ink);border-radius:4px;transition:transform 160ms var(--ease),background 160ms ease}.button:active{transform:scale(.97)}.text-link{display:inline-flex;align-items:center;gap:12px;font-size:12px;border-bottom:1px solid var(--line);padding:10px 0}.hero-caption{display:flex;align-items:center;gap:12px;margin-top:29px;color:var(--muted);font-size:11px}.hero-caption .line{height:1px;width:25px;background:var(--line)}
+    .build-board{background:var(--ink);color:var(--paper);border-radius:8px;padding:27px 29px 23px;position:relative;overflow:hidden;box-shadow:0 17px 30px #1c211e12}.board-top{display:flex;align-items:center;justify-content:space-between;color:#a6aea3;border-bottom:1px solid #ffffff20;padding-bottom:22px}.board-dots{display:flex;gap:5px}.board-dots i{width:4px;height:4px;background:#767f74;border-radius:50%}.board-label{color:#a6aea3;font-size:9px}.board-current{padding:26px 0 22px}.board-current .mono{color:var(--green);font-size:9px}.board-current h2{font-size:49px;font-weight:500;letter-spacing:-.06em;line-height:1;margin:17px 0 10px}.board-current p{color:#bac1b6;font-size:12px;margin:0}.system{position:relative;margin:24px 0 26px;padding:0 2px;display:flex;align-items:center;justify-content:space-between;gap:5px}.system:before{content:"";position:absolute;height:1px;background:#7f9272;left:30px;right:30px;top:18px}.sys-node{z-index:1;text-align:center}.node-icon{width:37px;height:37px;border:1px solid #74816b;background:var(--ink);border-radius:7px;display:grid;place-items:center;margin:0 auto 9px;font-size:16px;color:var(--green)}.sys-node:last-child .node-icon{background:var(--green);color:var(--ink)}.sys-node small{font:9px ui-monospace,SFMono-Regular,monospace;color:#bac1b6}.board-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ffffff20;padding-top:20px;gap:12px}.profile-chip{display:flex;align-items:center;gap:10px}.avatar-initials{height:34px;width:34px;background:#364132;display:grid;place-items:center;font-size:12px;border-radius:50%;color:var(--green)}.profile-chip strong{display:block;font-size:11px;font-weight:500}.profile-chip small{font-size:9px;color:#a6aea3}.board-mark{color:var(--green);font-size:27px;line-height:1}.hero-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:49px;border-top:1px solid var(--line);padding-top:22px}.experience-label{max-width:170px;line-height:1.5;color:var(--muted);font-size:10px}.wordmarks{display:flex;align-items:center;gap:36px;color:#555c52;font-size:19px;font-weight:700;letter-spacing:-.05em}.wordmarks .tul{letter-spacing:.05em}.wordmarks .easy{font-style:italic}.wordmarks .carulla{font-family:Georgia,serif;font-style:italic;font-weight:400}.wordmarks .banco{font-size:15px;letter-spacing:-.04em}
+    .impact{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#eeede5}.impact-grid{display:grid;grid-template-columns:repeat(4,1fr)}.metric{padding:31px 28px 30px;border-right:1px solid var(--line)}.metric:first-child{padding-left:0}.metric:last-child{border:0}.metric-value{font-size:44px;font-weight:500;letter-spacing:-.065em;line-height:1.15}.metric-value span{font-size:25px;color:var(--orange)}.metric h3{font-size:12px;margin:11px 0 5px;font-weight:600}.metric p{font-size:10px;color:var(--muted);margin:0}.section{padding:90px 0}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:38px}.section-kicker{color:var(--orange);margin-bottom:15px}.section h2{font-size:clamp(32px,3.2vw,45px);line-height:1.1;letter-spacing:-.055em;font-weight:500;margin:0}.section-head p{max-width:285px;font-size:13px;color:var(--muted);margin:0}.case{display:grid;grid-template-columns:45px 1fr 1.06fr;gap:25px;border-top:1px solid var(--line);padding:36px 0}.case-number{color:var(--muted);padding-top:4px}.case-meta{display:flex;align-items:center;gap:9px;font-size:10px;color:var(--muted);margin-bottom:14px}.pill{border:1px solid var(--line);border-radius:3px;padding:3px 7px;font-size:9px;line-height:1.2}.case h3{font-size:27px;letter-spacing:-.045em;line-height:1.15;font-weight:500;margin:0 0 12px}.case-role{font-size:11px;color:var(--muted);margin:0 0 19px}.tech{display:flex;flex-wrap:wrap;gap:7px}.tech span{font:9px ui-monospace,SFMono-Regular,monospace;padding:5px 8px;background:var(--soft);color:#4f594a;border-radius:3px}.case-description{font-size:13px;color:var(--muted);margin:0 0 20px;line-height:1.8}.case-description strong{font-weight:600;color:var(--ink)}.case-outcome{border-left:2px solid var(--orange);padding-left:15px;font-size:12px}.case-outcome strong{display:block;font-size:19px;font-weight:500;letter-spacing:-.035em}.case-outcome span{color:var(--muted);font-size:10px}.case details{margin-top:20px}.case summary{cursor:pointer;list-style:none;font-size:11px;display:flex;align-items:center;gap:9px;width:fit-content;padding:6px 0}.case summary::-webkit-details-marker{display:none}.case summary:after{content:"+";font-family:monospace;font-size:16px;color:var(--orange)}.case details[open] summary:after{content:"−"}.case details p{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.8}.source-note{font-size:10px;line-height:1.7;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin:0}
+    .approach{background:var(--ink);color:var(--paper)}.approach .section-head p{color:#abb3a6}.approach .section-kicker{color:var(--green)}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:38px;margin-top:53px}.principle{border-top:1px solid #ffffff30;padding-top:20px}.principle .mono{color:var(--green);font-size:10px}.principle h3{font-size:22px;font-weight:500;letter-spacing:-.04em;line-height:1.2;margin:26px 0 14px}.principle p{font-size:12px;color:#b6beb0;line-height:1.8;margin:0}.approach-footer{display:flex;align-items:center;justify-content:space-between;gap:25px;border-top:1px solid #ffffff30;margin-top:47px;padding-top:23px}.approach-footer p{font-size:11px;color:#abb3a6;margin:0}.approach-footer a{color:var(--green);font-size:11px;white-space:nowrap}.journey-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}.journey-intro p{font-size:14px;color:var(--muted);line-height:1.8;margin:22px 0 25px;max-width:330px}.now-block{border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:3px;padding:19px 20px;margin-top:34px}.now-block .mono{color:var(--orange);font-size:9px}.now-block h3{font-size:21px;letter-spacing:-.04em;margin:10px 0 4px;font-weight:500}.now-block p{font-size:11px;margin:0;line-height:1.7}.timeline{border-top:1px solid var(--line)}.timeline-row{display:grid;grid-template-columns:88px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}.timeline-row time{font:10px ui-monospace,SFMono-Regular,monospace;color:var(--muted);padding-top:5px}.timeline-row h3{margin:0 0 5px;font-size:15px;font-weight:500;letter-spacing:-.02em}.timeline-row p{font-size:11px;line-height:1.7;margin:0;color:var(--muted)}.timeline-row small{font-size:10px;color:var(--orange);display:block;margin-top:6px}.education{margin-top:24px}.education p{font-size:11px;color:var(--muted);line-height:1.8;margin:7px 0 0}.contact{padding:65px 0 40px;border-top:1px solid var(--line);background:#e9e8df}.contact-top{display:flex;align-items:flex-start;justify-content:space-between;gap:50px}.contact h2{font-size:clamp(40px,5.5vw,75px);font-weight:500;letter-spacing:-.065em;line-height:1.04;max-width:670px;margin:13px 0 28px}.contact h2 span{color:var(--orange)}.contact p{font-size:13px;color:var(--muted);max-width:370px}.contact-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:25px}.button.copy{color:var(--ink);background:transparent;border-color:#b7bcb0;gap:12px}.contact-aside{padding-top:47px;text-align:right;white-space:nowrap}.contact-aside a{display:block;font-size:12px;padding:10px 0}.contact-aside .arrow{font-size:14px;margin-left:20px}.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid #c9cdc1;padding-top:24px;margin-top:64px;font-size:10px;color:var(--muted)}.footer button{background:none;border:0;padding:4px 0;border-bottom:1px solid #aeb5a6;font-size:10px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,10px);padding:12px 20px;background:var(--ink);color:var(--paper);border:1px solid #ffffff25;box-shadow:0 8px 25px #0002;border-radius:4px;font-size:12px;opacity:0;pointer-events:none;transition:opacity 180ms ease,transform 180ms var(--ease);z-index:60}.toast.visible{opacity:1;transform:translate(-50%,0)}
+    @media(hover:hover) and (pointer:fine){.button:hover{background:#384330}.nav-links>a:hover,.text-link:hover,.nav-contact:hover,.contact-aside a:hover{color:var(--orange)}.copy:hover{background:#dcded3}.case summary:hover{color:var(--orange)}}
+    @media(min-width:1500px){.hero{padding-top:78px;padding-bottom:65px}.hero h1{font-size:88px}.hero-grid{gap:100px}}
+    @media(max-width:1050px){.container{width:calc(100% - 64px)}.hero-grid{gap:35px;grid-template-columns:1.2fr 1fr}.hero h1{font-size:65px}.build-board{padding:23px}.wordmarks{gap:26px}.metric{padding-left:22px;padding-right:16px}.journey-grid{gap:50px}.nav-links{gap:20px}.nav-right{gap:15px}.case{grid-template-columns:28px 1fr 1.1fr;gap:20px}}
+    @media(max-width:800px){.nav-links{display:none}.hero-grid{grid-template-columns:1fr 1fr;gap:30px}.hero h1{font-size:55px}.intro{font-size:14px}.hero-grid .actions{gap:13px}.button{gap:18px;padding:12px 15px}.build-board{padding:22px}.board-current h2{font-size:43px}.wordmarks{gap:22px;font-size:17px}.experience-label{max-width:135px}.wordmarks .banco{display:none}.hero-caption{font-size:10px}.metric-value{font-size:38px}.metric h3{font-size:11px}.case{grid-template-columns:23px 1fr 1fr;gap:16px}.case h3{font-size:24px}.principles{gap:27px}.journey-grid{grid-template-columns:.8fr 1.2fr;gap:35px}.section{padding:70px 0}.section-head p{max-width:230px}.contact-top{gap:30px}.contact-aside{padding-top:40px}}
+    @media(max-width:650px){.container{width:calc(100% - 40px)}html{scroll-padding-top:84px}.nav-inner{height:68px}.brand{font-size:13px}.monogram{width:31px;height:31px}.nav-right{gap:15px}.nav-contact{display:none}.hero{padding:36px 0 30px}.eyebrow{font-size:9px;letter-spacing:.04em}.hero-grid{grid-template-columns:1fr;gap:32px;margin-top:28px}.hero h1{font-size:clamp(52px,12vw,76px);max-width:500px;margin-bottom:22px}.intro{font-size:14px;max-width:390px}.hero-caption{margin-top:22px}.build-board{padding:22px 24px;max-width:none}.board-top{padding-bottom:15px}.board-current{padding:20px 0 15px}.board-current h2{font-size:40px;margin-top:12px}.system{margin:20px 0}.board-bottom{padding-top:16px}.board-label{font-size:8px}.hero-footer{display:block;margin-top:30px;padding-top:19px}.experience-label{max-width:none;margin-bottom:16px;font-size:9px}.wordmarks{justify-content:space-between;gap:15px;font-size:18px}.wordmarks .banco{display:none}.impact-grid{grid-template-columns:1fr 1fr}.metric{padding:24px 0 22px 22px}.metric:first-child{border-bottom:1px solid var(--line)}.metric:nth-child(2){border-right:0;border-bottom:1px solid var(--line)}.metric:nth-child(3){padding-left:0}.metric-value{font-size:39px}.metric h3{font-size:11px;margin:8px 0 4px}.metric p{font-size:9px}.section{padding:55px 0}.section-head{display:block;margin-bottom:28px}.section-head p{max-width:340px;margin-top:17px;font-size:12px}.section h2{font-size:35px}.section-kicker{font-size:10px}.case{grid-template-columns:24px 1fr;gap:13px;padding:28px 0}.case-copy{grid-column:2}.case h3{font-size:27px}.case-role{margin-bottom:14px}.case-meta{margin-bottom:12px}.case-description{margin:0 0 17px;font-size:12px}.case details{margin-top:13px}.case-outcome strong{font-size:19px}.source-note{font-size:9px}.principles{grid-template-columns:1fr;gap:27px;margin-top:30px}.principle{display:grid;grid-template-columns:25px 1fr;column-gap:15px;padding-top:20px}.principle .mono{grid-row:span 2;padding-top:4px}.principle h3{margin:0 0 12px;font-size:23px}.principle p{grid-column:2;font-size:12px}.approach-footer{align-items:flex-start;flex-direction:column;gap:12px;margin-top:30px}.journey-grid{grid-template-columns:1fr;gap:30px}.journey-intro p{max-width:none;font-size:13px}.now-block{margin-top:25px}.timeline-row{grid-template-columns:78px 1fr;gap:15px}.timeline-row time{font-size:9px}.timeline-row h3{font-size:14px}.contact{padding:45px 0 25px}.contact-top{display:block}.contact h2{font-size:52px}.contact-aside{text-align:left;padding-top:27px;display:flex;gap:25px}.contact-aside .arrow{margin-left:8px}.contact-actions{gap:10px}.contact-actions .button{font-size:11px;gap:15px}.footer{margin-top:35px;flex-wrap:wrap;font-size:9px;gap:14px}.footer>span:nth-child(2){display:none}.toast{max-width:calc(100% - 32px);width:max-content;font-size:11px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+    @media print{html{scroll-behavior:auto}.nav,.hero-caption,.hero-footer,.actions,.contact-actions,.contact-aside,.footer button,.toast,.case details{display:none!important}.container{width:100%}.hero{padding:0 0 20px}.hero-grid{grid-template-columns:1.2fr 1fr;gap:35px}.hero h1{font-size:47px}.hero .intro{font-size:11px}.build-board{box-shadow:none;print-color-adjust:exact}.impact{print-color-adjust:exact}.metric{padding:18px}.metric-value{font-size:30px}.section{padding:25px 0}.section h2{font-size:29px}.section-head{margin-bottom:20px}.case{break-inside:avoid;padding:20px 0}.case h3{font-size:21px}.case-description{font-size:11px}.approach{background:none;color:var(--ink);padding:25px 0;border-top:1px solid var(--line)}.approach .section-head p,.principle p,.approach-footer p{color:var(--muted)}.approach .section-kicker,.principle .mono,.approach-footer a{color:var(--orange)}.principles{margin-top:25px;gap:25px}.principle{border-color:var(--line)}.principle h3{font-size:19px;margin:15px 0 10px}.principle p{font-size:10px}.approach-footer{margin-top:20px;border-color:var(--line)}.journey-grid{gap:30px}.timeline-row{padding:12px 0}.contact{padding:25px 0 0;background:none}.contact h2{font-size:35px}.contact p{font-size:11px}.footer{margin-top:20px}.source-note{font-size:8px}@page{margin:14mm}}
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="wrap nav-inner">
-    <div class="brand">Julian<span>.</span>dev</div>
-    <div class="nav-links">
-      <a href="#sobre">Sobre mí</a>
-      <a href="#habilidades">Habilidades</a>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#educacion">Educación</a>
-      <a href="#contacto">Contacto</a>
+  <a class="skip" href="#main" data-en="Skip to content" data-es="Ir al contenido">Skip to content</a>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="#main" aria-label="Julian Pérez, home"><span class="monogram">JP<span style="color:#f16b3c;display:contents">.</span></span><span>Julian Pérez</span></a>
+      <div class="nav-links"><a href="#work" data-en="Selected work" data-es="Proyectos">Selected work</a><a href="#approach" data-en="How I build" data-es="Cómo construyo">How I build</a><a href="#journey" data-en="My journey" data-es="Trayectoria">My journey</a></div>
+      <div class="nav-right"><div class="lang-switch" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button><button type="button" data-lang="es" aria-pressed="false" aria-label="Español">ES</button></div><a class="nav-contact" href="#contact"><span data-en="Let's talk" data-es="Conversemos">Let's talk</span> ↗</a></div>
     </div>
-  </div>
-</nav>
-
-<header class="hero wrap">
-  <div class="avatar">JP</div>
-  <h1>Julian David Pérez Gómez</h1>
-  <div class="role">Desarrollador Móvil Senior · iOS · Android · Flutter</div>
-  <p class="lead">Ingeniero de Sistemas con más de 8 años construyendo aplicaciones móviles de alto impacto para clientes empresariales. Lidero equipos, automatizo despliegues y entrego apps en App Store y Google Play.</p>
-  <div class="meta">
-    <span>📍 Medellín, Colombia</span>
-    <span>📧 freritmg12@gmail.com</span>
-    <span>📱 (+57) 305 759 7509</span>
-  </div>
-  <div class="cta">
-    <a class="btn btn-primary" href="#contacto">Contáctame</a>
-    <a class="btn btn-ghost" href="https://github.com/frerit" target="_blank" rel="noopener">GitHub</a>
-    <a class="btn btn-ghost" href="https://www.linkedin.com/in/frerit/" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
-</header>
-
-<section id="sobre" class="wrap about reveal">
-  <h2 class="sec-title">Sobre mí</h2>
-  <p class="sec-sub">Quién soy y qué hago</p>
-  <p>Desarrollador Móvil Senior con experiencia en aplicaciones nativas iOS (Swift, Objective-C), Android (Kotlin, Java) y soluciones multiplataforma con Flutter y React Native. He liderado equipos de desarrollo y entregado aplicaciones para clientes empresariales como Cencosud, TUL y Grupo Éxito. Soy experto en automatización CI/CD, arquitecturas móviles (MVVM, Clean Architecture) y publicación en tiendas. Ganador de Google Code Jam 2018 y finalista del Hackathon AngelHack.</p>
-</section>
-
-<section id="habilidades" class="wrap reveal">
-  <h2 class="sec-title">Habilidades técnicas</h2>
-  <p class="sec-sub">Tecnologías con las que trabajo a diario</p>
-  <div class="skill-grid">
-    <div class="skill-card">
-      <h3><span class="dot"></span>Desarrollo iOS</h3>
-      <div class="tags">
-        <span class="tag">Swift</span><span class="tag">Objective-C</span><span class="tag">SwiftUI</span><span class="tag">UIKit</span><span class="tag">Core Data</span><span class="tag">Xcode</span><span class="tag">TestFlight</span><span class="tag">App Store Connect</span>
+  </nav>
+  <main id="main">
+    <header class="hero container">
+      <div class="eyebrow mono"><span class="status-dot" aria-hidden="true"></span><span data-en="Technical co-founder · Software architect · Colombia" data-es="Cofundador técnico · Arquitecto de software · Colombia">Technical co-founder · Software architect · Colombia</span></div>
+      <div class="hero-grid">
+        <div>
+          <h1><span style="color:inherit" data-en="From first build" data-es="De la primera idea">From first build</span><br><span data-en="to real users." data-es="a usuarios reales.">to real users.</span></h1>
+          <p class="intro"><strong data-en="I'm Julian. I'm building PayFlex." data-es="Soy Julian. Estoy construyendo PayFlex.">I'm Julian. I'm building PayFlex.</strong><br><span data-en="I bring a decade of experience shipping mobile products, designing software architecture, and helping engineering teams deliver." data-es="Llevo una década lanzando productos móviles, diseñando arquitectura de software y ayudando a equipos de ingeniería a entregar.">I bring a decade of experience shipping mobile products, designing software architecture, and helping engineering teams deliver.</span></p>
+          <div class="actions"><a class="button" href="#work"><span data-en="Explore my work" data-es="Explora mis proyectos">Explore my work</span><span class="arrow" aria-hidden="true">↘</span></a><a class="text-link" href="https://github.com/Frerit" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.linkedin.com/in/frerit/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div>
+          <div class="hero-caption"><span class="line" aria-hidden="true"></span><span data-en="Architecture. Hands-on engineering. Products in production." data-es="Arquitectura. Ingeniería práctica. Productos en producción.">Architecture. Hands-on engineering. Products in production.</span></div>
+        </div>
+        <aside class="build-board" aria-label="Current focus: PayFlex">
+          <div class="board-top"><span class="mono board-label" data-en="Founder / build log" data-es="Fundador / registro de construcción">Founder / build log</span><span class="board-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="board-current"><div class="mono" data-en="Currently building" data-es="Construyendo ahora">Currently building</div><h2>PayFlex<span style="color:var(--green)">↗</span></h2><p data-en="Technical Co-founder & Software Architect" data-es="Cofundador técnico y arquitecto de software">Technical Co-founder & Software Architect</p></div>
+          <div class="system" aria-hidden="true"><div class="sys-node"><div class="node-icon">⌘</div><small data-en="ARCHITECT" data-es="DISEÑAR">ARCHITECT</small></div><div class="sys-node"><div class="node-icon">&lt;/&gt;</div><small data-en="BUILD" data-es="CONSTRUIR">BUILD</small></div><div class="sys-node"><div class="node-icon">↗</div><small data-en="SHIP" data-es="LANZAR">SHIP</small></div></div>
+          <div class="board-bottom"><div class="profile-chip"><span class="avatar-initials" aria-hidden="true">JP</span><div><strong>Julian David Pérez</strong><small>Rionegro, Colombia</small></div></div><span class="board-mark" aria-hidden="true">✳</span></div>
+        </aside>
       </div>
-    </div>
-    <div class="skill-card">
-      <h3><span class="dot"></span>Desarrollo Android</h3>
-      <div class="tags">
-        <span class="tag">Kotlin</span><span class="tag">Java</span><span class="tag">Jetpack Compose</span><span class="tag">Android SDK</span><span class="tag">Room</span><span class="tag">ViewModel</span><span class="tag">Gradle</span><span class="tag">Material Design</span>
+      <div class="hero-footer"><div class="experience-label mono" data-en="Products & organizations in my experience" data-es="Productos y organizaciones de mi trayectoria">Products & organizations in my experience</div><div class="wordmarks" aria-label="Easy, TUL, Éxito, Carulla, Bancolombia"><span class="easy">easy</span><span class="tul">TUL</span><span>éxito</span><span class="carulla">carulla</span><span class="banco">Bancolombia</span></div></div>
+    </header>
+    <section class="impact" aria-label="Selected career outcomes">
+      <div class="container impact-grid">
+        <div class="metric"><div class="metric-value">200k<span>+</span></div><h3 data-en="Monthly active users" data-es="Usuarios activos mensuales">Monthly active users</h3><p data-en="TUL platform · Colombia & Mexico" data-es="Plataforma TUL · Colombia y México">TUL platform · Colombia & Mexico</p></div>
+        <div class="metric"><div class="metric-value">60<span>%</span></div><h3 data-en="Less deployment time" data-es="Menos tiempo de despliegue">Less deployment time</h3><p data-en="CI/CD work · Acid Labs" data-es="Trabajo de CI/CD · Acid Labs">CI/CD work · Acid Labs</p></div>
+        <div class="metric"><div class="metric-value">40<span>%</span></div><h3 data-en="Lower crash rates" data-es="Reducción en tasa de crashes">Lower crash rates</h3><p data-en="Architecture & code reviews · Acid Labs" data-es="Revisiones de arquitectura y código · Acid Labs">Architecture & code reviews · Acid Labs</p></div>
+        <div class="metric"><div class="metric-value">5</div><h3 data-en="Mobile engineers led" data-es="Ingenieros móviles liderados">Mobile engineers led</h3><p data-en="Flutter team · TUL" data-es="Equipo Flutter · TUL">Flutter team · TUL</p></div>
       </div>
-    </div>
-    <div class="skill-card">
-      <h3><span class="dot"></span>Multiplataforma</h3>
-      <div class="tags">
-        <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">React Native</span><span class="tag">Provider</span><span class="tag">Bloc</span><span class="tag">Riverpod</span><span class="tag">Expo</span><span class="tag">Redux</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <h3><span class="dot"></span>DevOps y CI/CD</h3>
-      <div class="tags">
-        <span class="tag">Fastlane</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span><span class="tag">GitLab CI</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Gestión de Releases</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <h3><span class="dot"></span>Backend y Servicios</h3>
-      <div class="tags">
-        <span class="tag">Firebase</span><span class="tag">Firestore</span><span class="tag">FCM</span><span class="tag">REST APIs</span><span class="tag">Supabase</span><span class="tag">AWS</span><span class="tag">Push / APNs</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <h3><span class="dot"></span>Pruebas y Metodologías</h3>
-      <div class="tags">
-        <span class="tag">XCTest</span><span class="tag">Espresso</span><span class="tag">TDD</span><span class="tag">BDD</span><span class="tag">Agile / Scrum</span><span class="tag">Liderazgo Técnico</span><span class="tag">Mentoría</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experiencia" class="wrap reveal">
-  <h2 class="sec-title">Experiencia laboral</h2>
-  <p class="sec-sub">Más de 8 años entregando aplicaciones móviles</p>
-  <div class="timeline">
-
-    <div class="job">
-      <div class="when">Dic 2023 – Presente</div>
-      <h3>Líder de Equipo Móvil — Cencosud</h3>
-      <div class="org">Acid Labs · Montevideo, Uruguay (Remoto)</div>
-      <ul>
-        <li>Lideré el desarrollo y lanzamiento del MVP de la app de Easy (Cencosud) en tiempo récord con Flutter y nativo iOS/Android, publicada en App Store y Google Play.</li>
-        <li>Implementé pipelines CI/CD con Fastlane y GitHub Actions, reduciendo el tiempo de despliegue en un 60%.</li>
-        <li>Realizo auditorías de arquitectura y código, reduciendo las tasas de crash en un 40%.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="when">Feb 2022 – Dic 2023</div>
-      <h3>Desarrollador Móvil Senior y Líder de Equipo</h3>
-      <div class="org">TUL · Bogotá, Colombia</div>
-      <ul>
-        <li>Lideré un equipo de 5 desarrolladores construyendo apps Flutter para e-commerce con más de 200.000 usuarios activos mensuales en Colombia y México.</li>
-        <li>Establecí prácticas DevOps con CI/CD, logrando 95% de cobertura de pruebas y reduciendo los ciclos de release de 2 semanas a 3 días.</li>
-        <li>Mentoricé desarrolladores junior en Clean Architecture y revisión de código.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="when">Ene 2021 – Ene 2022</div>
-      <h3>Desarrollador Móvil Senior</h3>
-      <div class="org">BitGrayLabs · Atlanta, Georgia, USA (Remoto)</div>
-      <ul>
-        <li>Desarrollé apps nativas iOS (Swift, SwiftUI) y Android (Kotlin, Jetpack Compose) para clientes en EE. UU.</li>
-        <li>Construí soluciones Flutter integrando Firebase (Auth, Cloud Messaging, Firestore).</li>
-        <li>Automaticé builds y despliegues a TestFlight y Google Play con GitHub Actions y Fastlane.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="when">Nov 2020 – Jun 2021</div>
-      <h3>Desarrollador iOS Senior</h3>
-      <div class="org">Teravision Technologies · Medellín, Colombia</div>
-      <ul>
-        <li>Desarrollé y mantuve apps iOS con Swift, UIKit y Core Data para clientes del mercado estadounidense.</li>
-        <li>Implementé arquitectura MVVM y pruebas con XCTest, logrando 80% de cobertura.</li>
-        <li>Automaticé builds y despliegues iOS con Fastlane y Azure DevOps.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="when">Jul 2019 – Dic 2020</div>
-      <h3>Líder Técnico Móvil</h3>
-      <div class="org">PRAGMA · Medellín, Colombia</div>
-      <ul>
-        <li>Lideré el equipo móvil para las apps retail de Grupo Éxito, con millones de usuarios.</li>
-        <li>Desarrollé apps nativas iOS (Swift, Objective-C) y Android (Kotlin, Java).</li>
-        <li>Diseñé la estrategia CI/CD con Azure DevOps, reduciendo errores de despliegue en 70%.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="when">May 2018 – Feb 2019</div>
-      <h3>Desarrollador Móvil Junior</h3>
-      <div class="org">Grupo Réditos · Medellín, Colombia</div>
-      <ul>
-        <li>Desarrollé apps con Android nativo (Java) y React Native para servicios financieros.</li>
-        <li>Implementé integraciones REST API y persistencia local con Room y SQLite.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="when">Abr 2016 – Jun 2018</div>
-      <h3>Desarrollador Full Stack</h3>
-      <div class="org">Komet Sales / Strategee · Medellín, Colombia</div>
-      <ul>
-        <li>Desarrollé apps iOS con Swift integradas con Salesforce y Pardot.</li>
-        <li>Construí aplicaciones web con React y gestioné despliegues a App Store.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section id="educacion" class="wrap reveal">
-  <div class="two-col">
-    <div>
-      <h2 class="sec-title">Educación</h2>
-      <p class="sec-sub">Formación académica</p>
-      <ul class="list-clean">
-        <li><strong>Ingeniería de Sistemas</strong>Politécnico Grancolombiano · 2018–2020</li>
-        <li><strong>Diplomado en Desarrollo Móvil Multiplataforma</strong>Cedesistemas · 2018–2019</li>
-        <li><strong>Especialización en Desarrollo de Apps Móviles</strong>SENA · 2017</li>
-        <li><strong>Tecnólogo en Análisis y Desarrollo de Sistemas</strong>SENA · 2014–2016</li>
-        <li><strong>Técnico en Programación de Software</strong>SENA · 2010–2011</li>
-      </ul>
-    </div>
-    <div>
-      <h2 class="sec-title">Premios y certificaciones</h2>
-      <p class="sec-sub">Reconocimientos</p>
-      <ul class="list-clean">
-        <li><strong>🏆 Primer Lugar — Google Code Jam Challenger</strong>Entre más de 100 participantes, Medellín · 2018</li>
-        <li><strong>🥈 Segundo Lugar — AngelHack International Hackathon</strong>Medellín · 2018</li>
-        <li><strong>Diplomado en Ciencias de la Computación</strong>Politécnico Grancolombiano · 2019</li>
-        <li><strong>Certificación Google Analytics</strong>EOI - Escuela de Organización Industrial · 2015</li>
-      </ul>
-      <h2 class="sec-title" style="margin-top:30px">Idiomas</h2>
-      <ul class="list-clean" style="margin-top:14px">
-        <li><strong>Español</strong>Nativo</li>
-        <li><strong>Inglés</strong>Intermedio (B1–B2) · Competencia técnica</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="contacto" class="wrap contact reveal">
-  <h2 class="sec-title">¿Trabajamos juntos?</h2>
-  <p>Estoy abierto a nuevas oportunidades y proyectos móviles. Escríbeme y conversemos.</p>
-  <div class="cta">
-    <a class="btn btn-primary" href="mailto:freritmg12@gmail.com">📧 Enviar correo</a>
-    <a class="btn btn-ghost" href="https://www.linkedin.com/in/frerit/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn btn-ghost" href="https://github.com/frerit" target="_blank" rel="noopener">GitHub</a>
-  </div>
-</section>
-
-<footer>
-  © <span id="year"></span> Julian David Pérez Gómez · Desarrollado con HTML & CSS · Publicado en GitHub Pages
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target);} });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
+    </section>
+    <section class="section container" id="work">
+      <div class="section-head"><div><div class="mono section-kicker" data-en="01 / Selected work" data-es="01 / Proyectos destacados">01 / Selected work</div><h2 data-en="A track record in production." data-es="Una trayectoria en producción.">A track record in production.</h2></div><p data-en="The work behind the numbers. My roles, the engineering decisions, and the outcomes." data-es="El trabajo detrás de los números. Mi rol, las decisiones de ingeniería y los resultados.">The work behind the numbers. My roles, the engineering decisions, and the outcomes.</p></div>
+      <article class="case"><div class="case-number mono">01</div><div><div class="case-meta"><span class="pill" data-en="RETAIL" data-es="COMERCIO">RETAIL</span><span>Cencosud / Acid Labs</span></div><h3 data-en="Easy, from MVP to launch." data-es="Easy: del MVP al lanzamiento.">Easy, from MVP to launch.</h3><p class="case-role" data-en="Technical Lead · Mobile product delivery" data-es="Líder técnico · Entrega de producto móvil">Technical Lead · Mobile product delivery</p><div class="tech"><span>Flutter</span><span>iOS / Android</span><span>Fastlane</span><span>GitHub Actions</span></div></div><div class="case-copy"><p class="case-description" data-en="Led the development and launch of Easy's mobile MVP using Flutter and native iOS/Android technologies. Took the product through App Store and Google Play publication within critical business deadlines." data-es="Lideré el desarrollo y lanzamiento del MVP móvil de Easy con Flutter y tecnologías nativas iOS/Android. Llevé el producto hasta su publicación en App Store y Google Play dentro de plazos críticos del negocio.">Led the development and launch of Easy's mobile MVP using Flutter and native iOS/Android technologies. Took the product through App Store and Google Play publication within critical business deadlines.</p><div class="case-outcome"><strong data-en="Shipped on both app stores." data-es="Publicado en ambas tiendas.">Shipped on both app stores.</strong><span data-en="From architecture to release ownership" data-es="Desde la arquitectura hasta el lanzamiento">From architecture to release ownership</span></div><details><summary data-en="The engineering behind it" data-es="La ingeniería detrás del resultado">The engineering behind it</summary><p data-en="At Acid Labs, I implemented and optimized Fastlane and GitHub Actions pipelines, reducing deployment time by 60%. Architecture reviews and code audits helped reduce crash rates by 40%." data-es="En Acid Labs implementé y optimicé pipelines con Fastlane y GitHub Actions, reduciendo el tiempo de despliegue un 60%. Las revisiones de arquitectura y auditorías de código ayudaron a reducir las tasas de crash un 40%.">At Acid Labs, I implemented and optimized Fastlane and GitHub Actions pipelines, reducing deployment time by 60%. Architecture reviews and code audits helped reduce crash rates by 40%.</p></details></div></article>
+      <article class="case"><div class="case-number mono">02</div><div><div class="case-meta"><span class="pill">B2B COMMERCE</span><span>TUL</span></div><h3 data-en="A faster path to release." data-es="Un camino más rápido a producción.">A faster path to release.</h3><p class="case-role" data-en="Mobile Developer · Led a team of five" data-es="Desarrollador móvil · Lideré un equipo de cinco">Mobile Developer · Led a team of five</p><div class="tech"><span>Flutter / Dart</span><span>Provider / BLoC</span><span>CI/CD</span><span>Clean Architecture</span></div></div><div class="case-copy"><p class="case-description" data-en="Led five mobile developers building Flutter applications for an e-commerce platform serving more than 200,000 monthly active users across Colombia and Mexico. Built delivery practices that helped the team ship more frequently." data-es="Lideré cinco desarrolladores móviles construyendo aplicaciones Flutter para una plataforma de comercio con más de 200.000 usuarios activos mensuales en Colombia y México. Establecí prácticas de entrega para lanzar con más frecuencia.">Led five mobile developers building Flutter applications for an e-commerce platform serving more than 200,000 monthly active users across Colombia and Mexico. Built delivery practices that helped the team ship more frequently.</p><div class="case-outcome"><strong data-en="2 weeks → 3 days" data-es="2 semanas → 3 días">2 weeks → 3 days</strong><span data-en="Release cycle · 95% automated test coverage" data-es="Ciclo de lanzamiento · 95% de cobertura de pruebas automatizadas">Release cycle · 95% automated test coverage</span></div><details><summary data-en="The engineering behind it" data-es="La ingeniería detrás del resultado">The engineering behind it</summary><p data-en="Designed cross-platform solutions with Flutter and Dart, using Provider and BLoC for state management. Established CI/CD automation with Fastlane and mentored developers in code review and Clean Architecture." data-es="Diseñé soluciones multiplataforma con Flutter y Dart, usando Provider y BLoC para el manejo de estado. Establecí automatización CI/CD con Fastlane y acompañé a los desarrolladores en revisión de código y Clean Architecture.">Designed cross-platform solutions with Flutter and Dart, using Provider and BLoC for state management. Established CI/CD automation with Fastlane and mentored developers in code review and Clean Architecture.</p></details></div></article>
+      <article class="case"><div class="case-number mono">03</div><div><div class="case-meta"><span class="pill" data-en="MOBILE ARCHITECTURE" data-es="ARQUITECTURA MÓVIL">MOBILE ARCHITECTURE</span><span>Pragma</span></div><h3 data-en="Éxito & Carulla, architected." data-es="Arquitectura para Éxito y Carulla.">Éxito & Carulla, architected.</h3><p class="case-role" data-en="Mobile Technical Lead · 2019–2021" data-es="Líder técnico móvil · 2019–2021">Mobile Technical Lead · 2019–2021</p><div class="tech"><span data-en="Mobile architecture" data-es="Arquitectura móvil">Mobile architecture</span><span data-en="Hands-on development" data-es="Desarrollo práctico">Hands-on development</span></div></div><div class="case-copy"><p class="case-description" data-en="Designed the mobile architecture for the Éxito and Carulla apps. Translated business requirements into technical solutions and guided implementation while staying hands-on with development." data-es="Diseñé la arquitectura móvil de las aplicaciones Éxito y Carulla. Traduje requerimientos del negocio en soluciones técnicas y guié la implementación, participando directamente en el desarrollo.">Designed the mobile architecture for the Éxito and Carulla apps. Translated business requirements into technical solutions and guided implementation while staying hands-on with development.</p><div class="case-outcome"><strong data-en="Architecture + execution." data-es="Arquitectura + ejecución.">Architecture + execution.</strong><span data-en="Technical ownership across two retail apps" data-es="Responsabilidad técnica sobre dos aplicaciones de retail">Technical ownership across two retail apps</span></div></div></article>
+      <p class="source-note" data-en="Selected career outcomes from my work at TUL and Acid Labs. Product and organization names refer to my experience as an employee or consultant." data-es="Resultados destacados de mi trabajo en TUL y Acid Labs. Los nombres de productos y organizaciones corresponden a mi experiencia como empleado o consultor.">Selected career outcomes from my work at TUL and Acid Labs. Product and organization names refer to my experience as an employee or consultant.</p>
+    </section>
+    <section class="section approach" id="approach"><div class="container"><div class="section-head"><div><div class="mono section-kicker" data-en="02 / How I build" data-es="02 / Cómo construyo">02 / How I build</div><h2 data-en="Own the architecture. Ship the product." data-es="Diseñar la arquitectura. Lanzar el producto.">Own the architecture. Ship the product.</h2></div><p data-en="The experience I bring to PayFlex: making technical decisions and following them all the way to production." data-es="La experiencia que llevo a PayFlex: tomar decisiones técnicas y acompañarlas hasta producción.">The experience I bring to PayFlex: making technical decisions and following them all the way to production.</p></div><div class="principles"><article class="principle"><span class="mono">01</span><h3 data-en="Start with the business problem." data-es="Empezar por el problema del negocio.">Start with the business problem.</h3><p data-en="At Pragma, business requirements became the mobile architecture for Éxito and Carulla. Technical choices need to serve the product people actually use." data-es="En Pragma, los requerimientos del negocio se convirtieron en la arquitectura móvil de Éxito y Carulla. Las decisiones técnicas deben servir al producto que usan las personas.">At Pragma, business requirements became the mobile architecture for Éxito and Carulla. Technical choices need to serve the product people actually use.</p></article><article class="principle"><span class="mono">02</span><h3 data-en="Make delivery repeatable." data-es="Hacer que la entrega sea repetible.">Make delivery repeatable.</h3><p data-en="CI/CD, automated testing, and release ownership turn a working build into a reliable delivery process. At TUL, release cycles went from two weeks to three days." data-es="CI/CD, pruebas automatizadas y responsabilidad sobre los lanzamientos convierten una compilación en un proceso de entrega confiable. En TUL pasamos de dos semanas a tres días.">CI/CD, automated testing, and release ownership turn a working build into a reliable delivery process. At TUL, release cycles went from two weeks to three days.</p></article><article class="principle"><span class="mono">03</span><h3 data-en="Build the team as well as the code." data-es="Construir el equipo junto con el código.">Build the team as well as the code.</h3><p data-en="Leading five mobile engineers meant mentoring, reviewing code, and sharing architectural decisions. Strong engineering compounds when the whole team can deliver." data-es="Liderar cinco ingenieros móviles implicó mentoría, revisión de código y decisiones de arquitectura compartidas. La ingeniería crece cuando todo el equipo puede entregar.">Leading five mobile engineers meant mentoring, reviewing code, and sharing architectural decisions. Strong engineering compounds when the whole team can deliver.</p></article></div><div class="approach-footer"><p data-en="Mobile engineering · Software architecture · Release automation · Technical leadership" data-es="Ingeniería móvil · Arquitectura de software · Automatización de entregas · Liderazgo técnico">Mobile engineering · Software architecture · Release automation · Technical leadership</p><a href="https://github.com/Frerit" target="_blank" rel="noopener noreferrer"><span data-en="Explore my GitHub" data-es="Explora mi GitHub">Explore my GitHub</span> ↗</a></div></div></section>
+    <section class="section container" id="journey"><div class="journey-grid"><div class="journey-intro"><div class="mono section-kicker" data-en="03 / The journey" data-es="03 / La trayectoria">03 / The journey</div><h2 data-en="A builder, before the title." data-es="Constructor, desde antes del título.">A builder, before the title.</h2><p data-en="From startup applications to retail platforms, my work has grown from writing features to owning architecture, leading engineers, and launching products." data-es="Desde aplicaciones para startups hasta plataformas de retail, mi trabajo ha evolucionado de escribir funcionalidades a liderar arquitectura, equipos y lanzamientos.">From startup applications to retail platforms, my work has grown from writing features to owning architecture, leading engineers, and launching products.</p><div class="now-block"><div class="mono" data-en="Now / PayFlex" data-es="Ahora / PayFlex">Now / PayFlex</div><h3 data-en="Building as a co-founder." data-es="Construyendo como cofundador.">Building as a co-founder.</h3><p data-en="Technical Co-founder & Software Architect. Bringing my experience in architecture and product delivery to PayFlex." data-es="Cofundador técnico y arquitecto de software. Llevando mi experiencia en arquitectura y entrega de productos a PayFlex.">Technical Co-founder & Software Architect. Bringing my experience in architecture and product delivery to PayFlex.</p></div><div class="education"><span class="mono muted" data-en="Foundation" data-es="Formación">Foundation</span><p data-en="Systems Engineering · Politécnico Grancolombiano (2017–2020). Software programming, systems analysis, and mobile development training at SENA." data-es="Ingeniería de Sistemas · Politécnico Grancolombiano (2017–2020). Formación en programación, análisis de sistemas y desarrollo móvil en el SENA.">Systems Engineering · Politécnico Grancolombiano (2017–2020). Software programming, systems analysis, and mobile development training at SENA.</p></div></div><div class="timeline"><div class="timeline-row"><time data-en="2026–NOW" data-es="2026–HOY">2026–NOW</time><div><h3>Cencosud</h3><p data-en="Technical Lead. Mobile delivery for Easy." data-es="Líder técnico. Entrega de producto móvil para Easy.">Technical Lead. Mobile delivery for Easy.</p></div></div><div class="timeline-row"><time>2022–2026</time><div><h3>Acid Labs</h3><p data-en="Technical Lead. MVP launches, CI/CD automation, architecture reviews, and code audits." data-es="Líder técnico. Lanzamiento de MVP, automatización CI/CD, revisiones de arquitectura y auditorías de código.">Technical Lead. MVP launches, CI/CD automation, architecture reviews, and code audits.</p><small data-en="Also: cybersecurity consulting for Bancolombia, 2024–2025." data-es="Además: consultoría de ciberseguridad para Bancolombia, 2024–2025.">Also: cybersecurity consulting for Bancolombia, 2024–2025.</small></div></div><div class="timeline-row"><time>2021–2022</time><div><h3>TUL</h3><p data-en="Mobile Developer. Led five engineers delivering Flutter applications for Colombia and Mexico." data-es="Desarrollador móvil. Lideré cinco ingenieros entregando aplicaciones Flutter para Colombia y México.">Mobile Developer. Led five engineers delivering Flutter applications for Colombia and Mexico.</p></div></div><div class="timeline-row"><time>2020–2021</time><div><h3>Bitgraylabs / Teravision</h3><p data-en="Senior iOS Developer. Native iOS, cross-platform mobile development, and CI/CD." data-es="Desarrollador iOS senior. Desarrollo nativo, multiplataforma y CI/CD.">Senior iOS Developer. Native iOS, cross-platform mobile development, and CI/CD.</p></div></div><div class="timeline-row"><time>2019–2021</time><div><h3>Pragma / Tech And Solve</h3><p data-en="Mobile architecture for Éxito and Carulla at Pragma. Native Swift development and release automation at Tech And Solve." data-es="Arquitectura móvil para Éxito y Carulla en Pragma. Desarrollo con Swift y automatización de entregas en Tech And Solve.">Mobile architecture for Éxito and Carulla at Pragma. Native Swift development and release automation at Tech And Solve.</p></div></div><div class="timeline-row"><time>2016–2019</time><div><h3>Strategee / Komet Sales / Grupo Réditos</h3><p data-en="Startup apps launched to market, web development for Argos's Tu Esfuerzo Construye program, Salesforce/Pardot work, and software for GANA." data-es="Apps para startups lanzadas al mercado, desarrollo web para Tu Esfuerzo Construye de Argos, trabajo con Salesforce/Pardot y software para GANA.">Startup apps launched to market, web development for Argos's Tu Esfuerzo Construye program, Salesforce/Pardot work, and software for GANA.</p></div></div></div></div></section>
+    <section class="contact" id="contact"><div class="container"><div class="contact-top"><div><div class="mono muted" data-en="04 / Let's connect" data-es="04 / Conversemos">04 / Let's connect</div><h2><span style="color:inherit" data-en="The next chapter:" data-es="El próximo capítulo:">The next chapter:</span><br><span>PayFlex.</span></h2><p data-en="I'm bringing a decade of product engineering to the founder journey. Let's talk about what we're building next." data-es="Estoy llevando una década de ingeniería de producto a mi camino como fundador. Hablemos de lo que viene.">I'm bringing a decade of product engineering to the founder journey. Let's talk about what we're building next.</p><div class="contact-actions"><a class="button" href="mailto:freritmg12@gmail.com"><span data-en="Email Julian" data-es="Escríbeme">Email Julian</span><span class="arrow" aria-hidden="true">↗</span></a><button type="button" class="button copy" id="copy-email"><span data-en="Copy email" data-es="Copiar correo">Copy email</span><span aria-hidden="true">⧉</span></button></div></div><div class="contact-aside"><a href="https://github.com/Frerit" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/frerit/" target="_blank" rel="noopener noreferrer">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></div></div><footer class="footer"><span>© <span id="year">2026</span> Julian David Pérez</span><span data-en="Based in Colombia. Building for what's next." data-es="Desde Colombia. Construyendo lo que viene.">Based in Colombia. Building for what's next.</span><button type="button" id="print-profile" data-en="Print / Save profile as PDF ↗" data-es="Imprimir / Guardar perfil en PDF ↗">Print / Save profile as PDF ↗</button></footer></div></section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      let language = 'en';
+      let toastTimer;
+      const titles = {en:'Julian Pérez — Technical Co-founder, PayFlex', es:'Julian Pérez — Cofundador técnico, PayFlex'};
+      function setLanguage(next) {
+        if (!['en','es'].includes(next)) return;
+        language = next;
+        document.documentElement.lang = next;
+        document.title = titles[next];
+        document.querySelectorAll('[data-en][data-es]').forEach(el => { el.textContent = el.dataset[next]; });
+        document.querySelectorAll('[data-lang]').forEach(el => { el.setAttribute('aria-pressed', String(el.dataset.lang === next)); });
+        try { localStorage.setItem('jp-language',next); } catch (_) {}
+      }
+      document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+      try { const saved = localStorage.getItem('jp-language'); if (saved === 'es') setLanguage(saved); } catch (_) {}
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const toast = document.getElementById('toast');
+      function notify(message) { clearTimeout(toastTimer); toast.textContent = message; toast.classList.add('visible'); toastTimer = setTimeout(() => toast.classList.remove('visible'),3500); }
+      document.getElementById('copy-email').addEventListener('click',async () => {
+        try { await navigator.clipboard.writeText('freritmg12@gmail.com'); notify(language === 'es' ? 'Correo copiado: freritmg12@gmail.com' : 'Email copied: freritmg12@gmail.com'); }
+        catch (_) { notify('freritmg12@gmail.com'); }
+      });
+      document.getElementById('print-profile').addEventListener('click',() => window.print());
+    })();
+  </script>
 </body>
 </html>
